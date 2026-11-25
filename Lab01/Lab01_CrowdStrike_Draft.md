@@ -83,12 +83,6 @@ QA ช่วยลดโอกาสที่การอัปเดตไม�
 
 ![หน้า repository และไฟล์ Lab 1](evidence/github-lab01-repository.png)
 
-### ภาพที่ 4 ประวัติการบันทึกงานบน GitHub
-
-ภาพแสดง commit history ของ repository ซึ่งยืนยันว่ามีการบันทึกและอัปโหลดงานอย่างต่อเนื่อง
-
-![ประวัติ commit บน GitHub](evidence/github-commit-history.png)
-
 ## เอกสารอ้างอิง
 
 1. CrowdStrike. (2024, August 6). *Executive Summary: Root Cause Analysis - Channel File 291*. https://www.crowdstrike.com/wp-content/uploads/2024/08/Executive-Summary_Root-Cause-Analysis_Channel-File-291.pdf

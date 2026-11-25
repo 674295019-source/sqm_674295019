@@ -1,17 +1,18 @@
-# Software Quality Management - Lab 1
+# การจัดการคุณภาพซอฟต์แวร์ - Lab 1
 
-Student ID: 674295019  
-Case study: CrowdStrike Falcon Sensor update outage (19 July 2024)
+รหัสนักศึกษา: 674295019<br>
+ชื่อ-นามสกุล: อภิรักษ์ แม่คอง<br>
+กรณีศึกษา: เหตุขัดข้องจากการอัปเดต CrowdStrike Falcon Sensor (19 กรกฎาคม 2024)
 
-This repository stores the work for **4663335 Software Quality Management**.
+repository นี้ใช้เก็บงานรายวิชา **4663335 การจัดการคุณภาพซอฟต์แวร์**
 
-## Contents
+## เนื้อหา
 
-- `Lab01_CrowdStrike_Draft.md` - research draft and report structure for Lab 1
+- `Lab01_CrowdStrike_Draft.md` - ร่างเนื้อหาและโครงสร้างรายงาน Lab 1
 
-## Git evidence
+## หลักฐาน Git
 
-Run the following commands in this folder when capturing the evidence required by the lab sheet:
+ใช้คำสั่งต่อไปนี้ในโฟลเดอร์นี้เมื่อบันทึกภาพหลักฐานตามที่ใบงานกำหนด:
 
 ```powershell
 git --version

@@ -1,85 +1,85 @@
-# Lab Report 1 (Draft)
+# รายงาน Lab 1 (ร่าง)
 
-## Title
+## ชื่อเรื่อง
 
-Analysis of the CrowdStrike Falcon Sensor Content Update Incident: Global Windows Outage on 19 July 2024
+การวิเคราะห์เหตุการณ์การอัปเดตเนื้อหา CrowdStrike Falcon Sensor ที่ทำให้ระบบ Windows ล่มทั่วโลก วันที่ 19 กรกฎาคม 2024
 
-**Course:** 4663335 Software Quality Management  
-**Student ID:** 674295019  
-**Name:** [Enter your first and last name]  
-**Date:** [Enter submission date]
+**รายวิชา:** 4663335 การจัดการคุณภาพซอฟต์แวร์<br>
+**รหัสนักศึกษา:** 674295019<br>
+**ชื่อ-นามสกุล:** อภิรักษ์ แม่คอง<br>
+**วันที่ส่ง:** [ระบุวันที่ส่ง]
 
-> Note: This is a working draft. Check the Lab 1 worksheet and rubric in MS Teams before converting it to the final PDF.
+> หมายเหตุ: เอกสารนี้เป็นร่างสำหรับทำงาน ควรตรวจสอบใบงานและ Rubric ของ Lab 1 ใน MS Teams ก่อนจัดทำเป็น PDF ฉบับส่ง
 
-## 1. Real software failure case: event and impact
+## 1. กรณีซอฟต์แวร์ล้มเหลวจริง: เหตุการณ์และผลกระทบ
 
-On 19 July 2024 at 04:09 UTC, CrowdStrike released a Rapid Response Content configuration update for the Windows Falcon Sensor. The update was intended to collect telemetry relating to possible new threat techniques. However, affected Windows hosts received problematic content and crashed with a Blue Screen of Death (BSOD). The incident affected Windows hosts running Falcon Sensor version 7.11 or later that were online and received the update between 04:09 and 05:27 UTC. CrowdStrike reverted the defective content at 05:27 UTC. Mac and Linux hosts were not affected.
+วันที่ 19 กรกฎาคม 2024 เวลา 04:09 UTC บริษัท CrowdStrike ได้ปล่อยการอัปเดตการตั้งค่า Rapid Response Content สำหรับ Falcon Sensor บนระบบ Windows โดยมีวัตถุประสงค์เพื่อเก็บข้อมูล telemetry เกี่ยวกับเทคนิคการโจมตีรูปแบบใหม่ที่อาจเกิดขึ้น อย่างไรก็ตาม เครื่อง Windows ที่ได้รับเนื้อหาการอัปเดตที่มีปัญหาเกิดอาการจอฟ้า หรือ Blue Screen of Death (BSOD) เหตุการณ์นี้กระทบเครื่อง Windows ที่ใช้ Falcon Sensor เวอร์ชัน 7.11 หรือใหม่กว่า ซึ่งออนไลน์และได้รับการอัปเดตในช่วง 04:09-05:27 UTC CrowdStrike ย้อนกลับการอัปเดตที่ผิดพลาดเมื่อเวลา 05:27 UTC ส่วนเครื่อง Mac และ Linux ไม่ได้รับผลกระทบ
 
-The incident was serious because the Falcon Sensor is deployed on endpoint computers in many organizations. A computer crash prevents staff from using normal business systems and can interrupt essential services that depend on those computers. The incident therefore illustrates how a defect in a widely distributed software update can propagate quickly and create operational disruption across many organizations.
+เหตุการณ์นี้มีความรุนแรง เนื่องจาก Falcon Sensor ถูกติดตั้งบนคอมพิวเตอร์ปลายทางของหลายองค์กร เมื่อคอมพิวเตอร์ล่ม บุคลากรไม่สามารถใช้งานระบบธุรกิจตามปกติ และอาจกระทบต่อบริการสำคัญที่พึ่งพาเครื่องเหล่านั้น กรณีนี้จึงแสดงให้เห็นว่า ข้อบกพร่องของซอฟต์แวร์อัปเดตที่เผยแพร่อย่างกว้างขวางสามารถกระจายผลกระทบอย่างรวดเร็วและทำให้การดำเนินงานของหลายองค์กรหยุดชะงักได้
 
-## 2. Quality characteristics involved
+## 2. คุณลักษณะคุณภาพที่เกี่ยวข้อง
 
-| Quality characteristic | Evidence from the incident | Why it matters |
+| คุณลักษณะคุณภาพ | หลักฐานจากเหตุการณ์ | ความสำคัญ |
 |---|---|---|
-| Reliability | The content update caused an unexpected exception and a Windows system crash. | Software should perform its required functions without failing under specified conditions. |
-| Availability | Affected computers could not remain operational after receiving the update. | Users could not access services or perform work while devices were unavailable. |
-| Compatibility | The update supplied 21 input fields while the sensor expected 20. | Components exchanging configuration data must correctly handle agreed data formats. |
-| Security / resilience | The update came from security software, yet its failure disabled the protected endpoints. | A security product must preserve system stability while it protects the system. |
-| Recoverability | Recovery required removal or reversal of the defective content before devices could return to service. | Systems need a safe, timely recovery and rollback mechanism after a failed deployment. |
+| ความน่าเชื่อถือ (Reliability) | การอัปเดตเนื้อหาทำให้เกิด exception ที่ไม่คาดคิดและระบบ Windows ล่ม | ซอฟต์แวร์ควรทำงานตามหน้าที่โดยไม่ล้มเหลวภายใต้เงื่อนไขที่กำหนด |
+| ความพร้อมใช้งาน (Availability) | เครื่องที่ได้รับผลกระทบไม่สามารถทำงานต่อได้หลังได้รับการอัปเดต | ผู้ใช้ไม่สามารถเข้าถึงบริการหรือทำงานได้ในช่วงที่เครื่องไม่พร้อมใช้งาน |
+| ความเข้ากันได้ (Compatibility) | การอัปเดตส่งข้อมูลเข้า 21 ฟิลด์ ในขณะที่ sensor คาดไว้ 20 ฟิลด์ | ส่วนประกอบที่แลกเปลี่ยนข้อมูลการตั้งค่าต้องจัดการรูปแบบข้อมูลที่ตกลงกันได้อย่างถูกต้อง |
+| ความมั่นคงปลอดภัยและความยืดหยุ่น (Security / Resilience) | การอัปเดตจากซอฟต์แวร์รักษาความปลอดภัยกลับทำให้เครื่องปลายทางที่ปกป้องอยู่ใช้งานไม่ได้ | ผลิตภัณฑ์ด้านความปลอดภัยต้องรักษาเสถียรภาพของระบบไปพร้อมกับการป้องกันภัยคุกคาม |
+| การกู้คืน (Recoverability) | ต้องนำเนื้อหาที่ผิดพลาดออกหรือย้อนกลับก่อนจึงทำให้เครื่องกลับมาใช้งานได้ | ระบบต้องมีกลไกกู้คืนและ rollback ที่ปลอดภัยและรวดเร็วเมื่อการปรับใช้ล้มเหลว |
 
-## 3. Where the problem should have been prevented or detected in the SDLC
+## 3. จุดในวงจรการพัฒนาซอฟต์แวร์ที่ควรป้องกันหรือตรวจพบปัญหา
 
-### Prevention
+### การป้องกัน
 
-1. **Requirements and design:** Define and enforce an explicit data-contract rule between the content configuration and the sensor. The number, type, and allowed range of input fields should be validated before release.
-2. **Implementation:** Add bounds checking and defensive error handling so malformed or unexpected content cannot cause a kernel-level system crash.
-3. **Testing:** Use automated schema validation, unit and integration tests for boundary cases, fuzzing, fault injection, and rollback tests. A test case using an unexpected field count should fail before production.
-4. **Release planning:** Assess the risk of releasing configuration content to a large fleet and require staged deployment plus a tested rollback plan.
+1. **การเก็บความต้องการและการออกแบบ:** กำหนดและบังคับใช้กติกา data contract ที่ชัดเจนระหว่าง content configuration กับ sensor ต้องตรวจสอบจำนวน ชนิด และขอบเขตที่ยอมรับได้ของฟิลด์ข้อมูลก่อนเผยแพร่
+2. **การพัฒนา:** เพิ่ม bounds checking และการจัดการข้อผิดพลาดเชิงป้องกัน เพื่อไม่ให้เนื้อหาที่รูปแบบผิดหรือไม่คาดคิดทำให้ระบบระดับ kernel ล่ม
+3. **การทดสอบ:** ใช้ automated schema validation, unit test และ integration test สำหรับกรณีขอบเขต, fuzzing, fault injection และ rollback test กรณีทดสอบที่มีจำนวนฟิลด์ไม่ถูกต้องควรล้มเหลวก่อนถึงระบบจริง
+4. **การวางแผนการเผยแพร่:** ประเมินความเสี่ยงของการปล่อย configuration ให้เครื่องจำนวนมาก และกำหนดให้มีการปล่อยแบบเป็นขั้น รวมถึงแผน rollback ที่ผ่านการทดสอบแล้ว
 
-### Detection before widespread impact
+### การตรวจพบก่อนเกิดผลกระทบในวงกว้าง
 
-1. Publish first to a small canary group instead of all eligible computers.
-2. Monitor crash rate, boot success, and sensor/system health during each deployment ring.
-3. Stop the rollout automatically when monitoring detects abnormal failures.
-4. Provide clear release notes and deployment controls so customers can select where and when the update is installed.
+1. ปล่อยการอัปเดตให้กลุ่ม canary ขนาดเล็กก่อน แทนการปล่อยให้ทุกเครื่องที่เข้าเกณฑ์ทันที
+2. เฝ้าระวังอัตราการล่ม ความสำเร็จของการบูต และสุขภาพของ sensor/ระบบในแต่ละ deployment ring
+3. หยุดการปล่อยโดยอัตโนมัติเมื่อระบบเฝ้าระวังตรวจพบความผิดปกติของการล้มเหลว
+4. ให้ release notes ที่ชัดเจนและเครื่องมือควบคุมการปรับใช้ เพื่อให้ลูกค้าเลือกเวลาและขอบเขตการติดตั้งอัปเดตได้
 
-## 4. QA and QC comparison for this case
+## 4. การเปรียบเทียบ QA และ QC ในกรณีนี้
 
-| Area | Example for the CrowdStrike case |
+| ด้าน | ตัวอย่างสำหรับกรณี CrowdStrike |
 |---|---|
-| QA - process-oriented prevention | Establish release governance, define validation criteria for configuration files, conduct independent review, and use staged deployment policies. |
-| QC - product-oriented detection | Run automated validation, boundary tests, integration tests, crash monitoring, and canary deployment checks against the actual update. |
+| QA - การป้องกันที่มุ่งเน้นกระบวนการ | กำหนด governance สำหรับการปล่อยรุ่น กำหนดเกณฑ์ตรวจสอบไฟล์ configuration ทำ independent review และใช้นโยบายปล่อยแบบเป็นขั้น |
+| QC - การตรวจหาข้อบกพร่องที่มุ่งเน้นผลิตภัณฑ์ | ทำ automated validation, boundary test, integration test, เฝ้าระวังการล่ม และตรวจสอบจากการปล่อยแบบ canary กับอัปเดตจริง |
 
-QA would reduce the chance that an unsafe update is approved for release. QC would identify the invalid update or its harmful behaviour before it reached the complete production fleet. Both are necessary.
+QA ช่วยลดโอกาสที่การอัปเดตไม่ปลอดภัยจะผ่านการอนุมัติให้เผยแพร่ ส่วน QC ช่วยตรวจพบการอัปเดตที่ไม่ถูกต้องหรือพฤติกรรมที่เป็นอันตราย ก่อนกระจายไปยังเครื่องทั้งหมดในระบบจริง ทั้งสองส่วนมีความจำเป็นร่วมกัน
 
-## 5. Proposed improvements
+## 5. แนวทางปรับปรุงที่เสนอ
 
-1. Validate the number and structure of all configuration fields before publication.
-2. Apply bounds checking in the content interpreter and handle invalid content safely.
-3. Require automated regression tests for every template and configuration type.
-4. Use progressive deployment rings: internal testing, canary customers, limited deployment, then broader rollout.
-5. Monitor deployment telemetry and automatically pause a rollout when crash indicators exceed the threshold.
-6. Test rollback procedures regularly and document the recovery runbook.
+1. ตรวจสอบจำนวนและโครงสร้างของทุก configuration field ก่อนเผยแพร่
+2. ใช้ bounds checking ใน content interpreter และจัดการเนื้อหาที่ไม่ถูกต้องอย่างปลอดภัย
+3. กำหนดให้มี automated regression test สำหรับทุก template และ configuration type
+4. ใช้ deployment ring แบบค่อยเป็นค่อยไป: ทดสอบภายใน, กลุ่มลูกค้า canary, ปล่อยแบบจำกัด และจึงขยายวงกว้าง
+5. เฝ้าระวัง deployment telemetry และหยุดการปล่อยอัตโนมัติเมื่อค่าบ่งชี้การล่มเกินเกณฑ์
+6. ทดสอบขั้นตอน rollback อย่างสม่ำเสมอและจัดทำ recovery runbook
 
-These proposals align with CrowdStrike's reported actions: stronger test procedures and validation, enhanced bounds checking, and deployment rings with acceptance checks.
+ข้อเสนอเหล่านี้สอดคล้องกับแนวทางที่ CrowdStrike รายงานว่าจะดำเนินการ ได้แก่ การเพิ่มความเข้มงวดของขั้นตอนทดสอบและการตรวจสอบ การเพิ่ม bounds checking และการใช้ deployment ring ที่มี acceptance check
 
-## 6. GitHub and Git evidence to insert in the final report
+## 6. หลักฐาน GitHub และ Git ที่ต้องแทรกในรายงานฉบับสุดท้าย
 
-Insert your own screenshots here when creating the PDF:
+ให้แทรกภาพหน้าจอของตนเองต่อไปนี้เมื่อจัดทำ PDF:
 
-1. Screenshot of GitHub profile: `674295019-source`.
-2. Screenshot of the private repository: `sqm_674295019`.
-3. Screenshot of the terminal output from `git --version`.
-4. Optional supporting screenshot: `git remote -v` showing that the local folder is linked to the repository.
+1. ภาพหน้าโปรไฟล์ GitHub: `674295019-source`
+2. ภาพ repository แบบ private: `sqm_674295019`
+3. ภาพผลลัพธ์คำสั่ง `git --version` จาก Terminal
+4. ภาพประกอบเพิ่มเติม (ถ้ามี): ผล `git remote -v` เพื่อแสดงว่าโฟลเดอร์ในเครื่องเชื่อมกับ repository แล้ว
 
-## References
+## เอกสารอ้างอิง
 
 1. CrowdStrike. (2024, August 6). *Executive Summary: Root Cause Analysis - Channel File 291*. https://www.crowdstrike.com/wp-content/uploads/2024/08/Executive-Summary_Root-Cause-Analysis_Channel-File-291.pdf
 2. CrowdStrike. (2024, July 24). *Preliminary Post Incident Review: Content Configuration Update Impacting the Falcon Sensor and the Windows Operating System (BSOD)*. https://www.crowdstrike.com/en-us/blog/falcon-content-update-preliminary-post-incident-report/
 
-## AI-use record (complete only if required by the Lab 1 worksheet)
+## บันทึกการใช้ AI (กรอกเมื่อใบงาน Lab 1 กำหนด)
 
-**Tool used:** OpenAI Codex  
-**Prompt / task:** Requested help to locate reliable sources and organize an analysis of the CrowdStrike outage using software-quality concepts.  
-**How the output was used:** Used only as an outline and drafting aid. Facts and references were checked against CrowdStrike's incident reports.  
-**Student verification and changes:** [Describe what you verified, revised, or added yourself.]
+**เครื่องมือที่ใช้:** OpenAI Codex<br>
+**คำถาม/งานที่สั่ง:** ขอให้ช่วยค้นหาแหล่งอ้างอิงที่น่าเชื่อถือและจัดโครงวิเคราะห์เหตุ CrowdStrike ล่ม โดยใช้แนวคิดด้านคุณภาพซอฟต์แวร์<br>
+**การนำผลลัพธ์ไปใช้:** ใช้เป็นแนวทางจัดโครงร่างและร่างเนื้อหาเท่านั้น โดยตรวจสอบข้อเท็จจริงและเอกสารอ้างอิงกับรายงานเหตุการณ์ของ CrowdStrike แล้ว<br>
+**สิ่งที่ผู้จัดทำตรวจสอบหรือแก้ไขเอง:** [ระบุสิ่งที่ตรวจสอบ ปรับแก้ หรือเพิ่มเติมด้วยตนเอง]

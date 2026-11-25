@@ -63,14 +63,31 @@ QA ช่วยลดโอกาสที่การอัปเดตไม�
 
 ข้อเสนอเหล่านี้สอดคล้องกับแนวทางที่ CrowdStrike รายงานว่าจะดำเนินการ ได้แก่ การเพิ่มความเข้มงวดของขั้นตอนทดสอบและการตรวจสอบ การเพิ่ม bounds checking และการใช้ deployment ring ที่มี acceptance check
 
-## 6. หลักฐาน GitHub และ Git ที่ต้องแทรกในรายงานฉบับสุดท้าย
+## 6. หลักฐาน GitHub และ Git
 
-ให้แทรกภาพหน้าจอของตนเองต่อไปนี้เมื่อจัดทำ PDF:
+### ภาพที่ 1 หน้าโปรไฟล์ GitHub
 
-1. ภาพหน้าโปรไฟล์ GitHub: `674295019-source`
-2. ภาพ repository แบบ private: `sqm_674295019`
-3. ภาพผลลัพธ์คำสั่ง `git --version` จาก Terminal
-4. ภาพประกอบเพิ่มเติม (ถ้ามี): ผล `git remote -v` เพื่อแสดงว่าโฟลเดอร์ในเครื่องเชื่อมกับ repository แล้ว
+ภาพแสดงบัญชี GitHub ของผู้จัดทำ ชื่อผู้ใช้ `674295019-source`
+
+![หน้าโปรไฟล์ GitHub](evidence/github-profile.png)
+
+### ภาพที่ 2 ผลการตรวจสอบเวอร์ชัน Git
+
+คำสั่ง `git --version` แสดงว่าเครื่องติดตั้ง Git เวอร์ชัน 2.55.0.windows.2 แล้ว
+
+![ผลคำสั่ง git --version](evidence/git-version.png)
+
+### ภาพที่ 3 Repository และไฟล์งาน Lab 1
+
+ภาพแสดง repository `sqm_674295019` ของบัญชี `674295019-source` และโฟลเดอร์ `Lab01` ที่เก็บไฟล์งาน
+
+![หน้า repository และไฟล์ Lab 1](evidence/github-lab01-repository.png)
+
+### ภาพที่ 4 ประวัติการบันทึกงานบน GitHub
+
+ภาพแสดง commit history ของ repository ซึ่งยืนยันว่ามีการบันทึกและอัปโหลดงานอย่างต่อเนื่อง
+
+![ประวัติ commit บน GitHub](evidence/github-commit-history.png)
 
 ## เอกสารอ้างอิง
 

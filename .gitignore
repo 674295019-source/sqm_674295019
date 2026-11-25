@@ -1,5 +1,6 @@
 # Temporary files produced while inspecting course materials
 tmp/
+output/
 
 # The supplied course handout is reference material, not Lab 1 work
 Week1_Handout_4663335_2-2569.pdf

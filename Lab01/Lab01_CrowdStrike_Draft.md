@@ -69,19 +69,15 @@ QA ช่วยลดโอกาสที่การอัปเดตไม�
 
 ภาพแสดงบัญชี GitHub ของผู้จัดทำ ชื่อผู้ใช้ `674295019-source`
 
-![หน้าโปรไฟล์ GitHub](evidence/github-profile.png)
-
 ### ภาพที่ 2 ผลการตรวจสอบเวอร์ชัน Git
 
 คำสั่ง `git --version` แสดงว่าเครื่องติดตั้ง Git เวอร์ชัน 2.55.0.windows.2 แล้ว
-
-![ผลคำสั่ง git --version](evidence/git-version.png)
 
 ### ภาพที่ 3 Repository และไฟล์งาน Lab 1
 
 ภาพแสดง repository `sqm_674295019` ของบัญชี `674295019-source` และโฟลเดอร์ `Lab01` ที่เก็บไฟล์งาน
 
-![หน้า repository และไฟล์ Lab 1](evidence/github-lab01-repository.png)
+ภาพทั้งสามถูกแทรกไว้ในช่องหลักฐานของ PDF ฉบับส่งแล้ว
 
 ## เอกสารอ้างอิง
 
